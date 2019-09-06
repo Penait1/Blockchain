@@ -16,6 +16,7 @@ class Miner(
 
     private fun latestBlock(block: Block) {
         println(SimpleDateFormat("hh:mm:ss").format(block.timestamp) + ": Block added to blockchain")
+        println("Resetting nonce: $nonce")
         nonce = 0L
         newBlock = Block.new(block.hash(), Any(), nonce.toString())
     }
