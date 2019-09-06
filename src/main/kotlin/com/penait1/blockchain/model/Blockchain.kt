@@ -1,6 +1,7 @@
 package com.penait1.blockchain.model
 
 import com.penait1.blockchain.chain.BlockchainConfig
+import java.math.BigInteger
 import java.util.*
 
 class Blockchain private constructor(
@@ -12,8 +13,8 @@ class Blockchain private constructor(
     fun lastBlock() = blocks.last()
 
     fun addBlock(block: Block): Boolean {
-        if (blocks.last().hash().contentEquals(block.previous)
-            && block.hash().toString().startsWith("0".repeat(difficulty()))
+        if (BigInteger(block.hash()) < difficulty()
+            && blocks.last().hash().contentEquals(block.previous)
         ) {
             this.blocks.add(block)
             notifySubscribers(block)
@@ -34,8 +35,7 @@ class Blockchain private constructor(
 
     fun blockHeight() = this.blocks.size
 
-    //TODO calculate difficulity
-    private fun difficulty() = 1
+    private fun difficulty() = BigInteger("-57895600000000000000000000000000000000000000000000000000000000000000000000000")
 
     private fun notifySubscribers(block: Block) {
         subscriptions.forEach {
