@@ -1,21 +1,48 @@
 package com.penait1.blockchain.model
 
-class Blockchain(
-    private val blocks: HashMap<ByteArray, Block> = HashMap()
+import java.util.*
+
+class Blockchain private constructor(
+    private val blocks: MutableList<Block>,
+    private val subscriptions: MutableMap<UUID, (Block) -> Unit> = mutableMapOf()
 ) {
 
+    fun lastBlock() = blocks.last()
+
     fun addBlock(block: Block): Boolean {
-        this.blocks[block.previous]?.let {
-            if (block.hash().toString().startsWith("0".repeat(difficulity()))) {
-                this.blocks[block.hash()] = block
-                return true
-            }
+        if (blocks.last().hash().contentEquals(block.previous)
+            && block.hash().toString().startsWith("0".repeat(difficulty()))
+        ) {
+            this.blocks.add(block)
+            notifySubscribers(block)
+            return true
         }
         return false
+    }
+
+    fun subscribe(callback: (Block) -> Unit): UUID {
+        val id = UUID.randomUUID()
+        subscriptions[id] = callback
+        return id
+    }
+
+    fun unsubscribe(id: UUID) {
+        subscriptions.remove(id)
     }
 
     fun blockHeight() = this.blocks.size
 
     //TODO calculate difficulity
-    fun difficulity() = 1
+    private fun difficulty() = 1
+
+    private fun notifySubscribers(block: Block) {
+        subscriptions.forEach {
+            it.value.invoke(block)
+        }
+    }
+
+    companion object {
+        fun of(genesis: Block) = of(listOf(genesis))
+        fun of(blocks: List<Block>) = Blockchain(blocks.toMutableList())
+    }
 }
