@@ -1,4 +1,4 @@
-package com.penait1.blockchain
+package com.penait1.blockchain.db
 
 import java.io.File
 import org.iq80.leveldb.DB

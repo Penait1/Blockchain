@@ -1,6 +1,7 @@
 package com.penait1.blockchain
 
 import com.penait1.blockchain.chain.Main
+import com.penait1.blockchain.db.LevelDB
 import com.penait1.blockchain.miner.Miner
 import com.penait1.blockchain.model.Blockchain
 
