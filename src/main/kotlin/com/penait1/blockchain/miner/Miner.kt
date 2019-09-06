@@ -4,21 +4,26 @@ import com.penait1.blockchain.model.Block
 import com.penait1.blockchain.model.Blockchain
 
 class Miner(
-    private val blockchain: Blockchain,
-    private var lastBlock: Block
+    private val blockchain: Blockchain
 ) {
 
-    fun setLastBlock(block: Block) {
-        lastBlock = block
+    private var nonce = 0L
+    private var newBlock: Block = Block.new(blockchain.lastBlock().hash(), Any(), nonce.toString())
+
+    private fun latestBlock(block: Block) {
+        nonce = 0L
+        newBlock = Block.new(block.hash(), Any(), nonce.toString())
+    }
+
+    init {
+        blockchain.subscribe(this::latestBlock)
     }
 
     fun mine() {
-        var nonce = 0
-        val block = Block.new(lastBlock.hash(), Any(), nonce.toString())
-        while (!blockchain.addBlock(block)) {
-            block.nonce = (++nonce).toString()
+        while (!blockchain.addBlock(newBlock)) {
+            newBlock.nonce = (++nonce).toString()
         }
 
-        println("Block found: " + block.hash())
+        println("Block found: " + newBlock.hash())
     }
 }

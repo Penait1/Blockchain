@@ -6,10 +6,9 @@ import com.penait1.blockchain.model.Blockchain
 
 fun main() {
     try {
-        val blockchain = Blockchain()
-        blockchain.addBlock(Main.genesisBlock)
+        val blockchain = Blockchain.of(Main.genesisBlock)
 
-        val miner = Miner(blockchain, Main.genesisBlock)
+        val miner = Miner(blockchain)
 
         while (blockchain.blockHeight() < 5) {
             miner.mine()
