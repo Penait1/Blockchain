@@ -1,4 +1,4 @@
-package main.kotlin.nl.penait1.blockchain.model
+package com.penait1.blockchain.model
 
 class Blockchain(private val blocks: ArrayList<Block>, var currentDifficulty: Int = 1) {
     fun getCurrentBlockHeight() = this.blocks.size
@@ -33,7 +33,7 @@ class Blockchain(private val blocks: ArrayList<Block>, var currentDifficulty: In
                 this.blocks.size,
                 Object(),
                 blocks.last().currentHash,
-                nonce.toString(),
+                nonce.toString()
             )
         }
 

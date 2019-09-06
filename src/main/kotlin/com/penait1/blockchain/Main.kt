@@ -1,7 +1,7 @@
 package main.kotlin.nl.penait1.blockchain
 
-import main.kotlin.nl.penait1.blockchain.model.Block
-import main.kotlin.nl.penait1.blockchain.model.Blockchain
+import com.penait1.blockchain.model.Block
+import com.penait1.blockchain.model.Blockchain
 
 fun main() {
     val index = 0

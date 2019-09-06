@@ -1,4 +1,4 @@
-package main.kotlin.nl.penait1.blockchain.model
+package com.penait1.blockchain.model
 
 import java.security.MessageDigest
 
