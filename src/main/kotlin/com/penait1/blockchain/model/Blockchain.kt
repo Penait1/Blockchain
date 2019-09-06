@@ -18,7 +18,7 @@ class Blockchain(private val blocks: ArrayList<Block>, var currentDifficulty: In
             var previousBlock = this.blocks.get(index)
 
             if (!Block.validate(block)) return false
-            if (Block.calculateHashFromBlock(previousBlock) != block.previousHash) return false
+            if (!Block.calculateHashFromBlock(previousBlock).contentEquals(block.previousHash)) return false
         }
         return true
     }
