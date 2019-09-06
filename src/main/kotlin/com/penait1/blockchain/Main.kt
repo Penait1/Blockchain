@@ -1,27 +1,16 @@
-package main.kotlin.nl.penait1.blockchain
+package com.penait1.blockchain
 
-import com.penait1.blockchain.model.Block
+import com.penait1.blockchain.chain.Main
+import com.penait1.blockchain.miner.Miner
 import com.penait1.blockchain.model.Blockchain
 
 fun main() {
-    val index = 0
-    val data = Object()
-    val previousHash = ByteArray(0)
-    val nonce = "Random"
+    val blockchain = Blockchain()
+    blockchain.addBlock(Main.genesisBlock)
 
-    val genesisBlock = Block.new(index, data, previousHash, nonce)
+    val miner = Miner(blockchain, Main.genesisBlock)
 
-
-    val blockchain = Blockchain(ArrayList())
-    blockchain.addBlock(genesisBlock)
-
-    while(blockchain.getCurrentBlockHeight() < 5) {
-        blockchain.mineBlock()
+    while (blockchain.blockHeight() < 5) {
+        miner.mine()
     }
-
-    println(blockchain.isChainValid())
-
-    blockchain.mineBlock()
-    println(blockchain.isChainValid())
-
 }
