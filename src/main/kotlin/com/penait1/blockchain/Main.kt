@@ -7,7 +7,7 @@ import com.penait1.blockchain.model.Blockchain
 
 fun main() {
     try {
-        val blockchain = Blockchain.of(Main.genesisBlock)
+        val blockchain = Blockchain.of(Main)
 
         val miner = Miner(blockchain)
 

@@ -1,9 +1,11 @@
 package com.penait1.blockchain.model
 
+import com.penait1.blockchain.chain.BlockchainConfig
 import java.util.*
 
 class Blockchain private constructor(
     private val blocks: MutableList<Block>,
+    private val config: BlockchainConfig,
     private val subscriptions: MutableMap<UUID, (Block) -> Unit> = mutableMapOf()
 ) {
 
@@ -42,7 +44,6 @@ class Blockchain private constructor(
     }
 
     companion object {
-        fun of(genesis: Block) = of(listOf(genesis))
-        fun of(blocks: List<Block>) = Blockchain(blocks.toMutableList())
+        fun of(config: BlockchainConfig) = Blockchain(mutableListOf(config.genesisBlock), config)
     }
 }
