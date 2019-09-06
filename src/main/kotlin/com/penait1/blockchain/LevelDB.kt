@@ -6,7 +6,7 @@ import org.iq80.leveldb.Options
 import org.iq80.leveldb.impl.Iq80DBFactory.factory
 
 object LevelDB {
-    var db: DB
+    val db: DB
 
     init {
         val options = Options()
