@@ -5,6 +5,9 @@ import com.penait1.blockchain.miner.Miner
 import com.penait1.blockchain.model.Blockchain
 
 fun main() {
+    LevelDB.db.put("test".toByteArray(), "test".toByteArray())
+    println(LevelDB.db.get("test".toByteArray()))
+
     val blockchain = Blockchain()
     blockchain.addBlock(Main.genesisBlock)
 
