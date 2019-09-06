@@ -1,10 +1,9 @@
 package com.penait1.blockchain
 
 import java.io.File
-import org.fusesource.leveldbjni.JniDBFactory.factory
 import org.iq80.leveldb.DB
 import org.iq80.leveldb.Options
-
+import org.iq80.leveldb.impl.Iq80DBFactory.factory
 
 object LevelDB {
     var db: DB
@@ -12,6 +11,6 @@ object LevelDB {
     init {
         val options = Options()
         options.createIfMissing(true)
-        this.db = factory.open(File("level"), options)
+        this.db = factory.open(File("leveldb"), options)
     }
 }

@@ -43,6 +43,8 @@
     <orderEntry type="library" scope="TEST" name="Maven: net.bytebuddy:byte-buddy:1.9.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: net.bytebuddy:byte-buddy-agent:1.9.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.objenesis:objenesis:2.6" level="project" />
-    <orderEntry type="library" name="Maven: org.fusesource.leveldbjni:leveldbjni-all:1.8" level="project" />
+    <orderEntry type="library" name="Maven: org.iq80.leveldb:leveldb:0.12" level="project" />
+    <orderEntry type="library" name="Maven: org.iq80.leveldb:leveldb-api:0.12" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:guava:21.0" level="project" />
   </component>
 </module>
