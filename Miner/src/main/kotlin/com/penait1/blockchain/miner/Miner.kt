@@ -1,11 +1,26 @@
 package com.penait1.blockchain.miner
 
-import com.penait1.blockchain.model.Block
-import com.penait1.blockchain.model.Blockchain
-import java.math.BigInteger
-import java.text.DateFormat
+import com.penait1.blockchain.node.db.LevelDB
+import com.penait1.blockchain.node.model.Block
+import com.penait1.blockchain.node.model.Blockchain
 import java.text.SimpleDateFormat
 import java.util.*
+
+fun main() {
+    try {
+        val blockchain = Blockchain.main()
+
+        val miner = Miner(blockchain)
+
+        val start = Date()
+        while (blockchain.blockHeight() < 5) {
+            miner.mine()
+        }
+        println("Average blocktime: ${(Date().time - start.time) / 5}")
+    } finally {
+        LevelDB.db.close()
+    }
+}
 
 class Miner(
     private val blockchain: Blockchain

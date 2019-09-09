@@ -1,4 +1,4 @@
-package com.penait1.blockchain.model
+package com.penait1.blockchain.node.model
 
 import java.security.MessageDigest
 

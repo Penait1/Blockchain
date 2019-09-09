@@ -1,6 +1,6 @@
-package com.penait1.blockchain.chain
+package com.penait1.blockchain.node.chain
 
-import com.penait1.blockchain.model.Block
+import com.penait1.blockchain.node.model.Block
 import java.util.concurrent.TimeUnit
 
 object Main : BlockchainConfig {

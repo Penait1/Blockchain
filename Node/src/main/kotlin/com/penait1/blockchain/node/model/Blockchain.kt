@@ -1,6 +1,7 @@
-package com.penait1.blockchain.model
+package com.penait1.blockchain.node.model
 
-import com.penait1.blockchain.chain.BlockchainConfig
+import com.penait1.blockchain.node.chain.BlockchainConfig
+import com.penait1.blockchain.node.chain.Main
 import java.math.BigInteger
 import java.util.*
 
@@ -44,6 +45,8 @@ class Blockchain private constructor(
     }
 
     companion object {
-        fun of(config: BlockchainConfig) = Blockchain(mutableListOf(config.genesisBlock), config)
+        fun main() = of(Main)
+        fun of(config: BlockchainConfig) =
+            Blockchain(mutableListOf(config.genesisBlock), config)
     }
 }
